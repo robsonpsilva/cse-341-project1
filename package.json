@@ -1,0 +1,24 @@
+{
+  "name": "cse-341-project1",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "devStart": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robsonpsilva/cse-341-project1.git"
+  },
+  "author": "Robson Paulo da Silva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/robsonpsilva/cse-341-project1/issues"
+  },
+  "homepage": "https://github.com/robsonpsilva/cse-341-project1#readme",
+  "description": "My first project",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
