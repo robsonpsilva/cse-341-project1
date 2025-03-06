@@ -7,7 +7,6 @@ dotenv.config();
 let database;
 
 const initDb = (callback) => {
-    let url = process.env.MONGODB_URL;
     if(database){
         console.log(`DB is already initialized` );
         return callback(null, database);
