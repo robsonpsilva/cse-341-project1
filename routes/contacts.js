@@ -1,16 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const { createContact } = require('../controllers/contacts');
 
 const contactsController =  require("../controllers/contacts");
 
-router.get("/", contactsController.getAll);
-router.get("/:id", contactsController.getSingle);
-router.put('/', createContact);
+
+router.get("/contacts", contactsController.getAll); // Rota para buscar todos os contatos
+router.get("/contacts/:id", contactsController.getSingle); // Rota para buscar um contato pelo ID
+router.put("/inputcontact", contactsController.upsertContact); // Rota para criar/atualizar contato
 
 module.exports = router;
-
-
-// Rota para lidar com o método PUT e criar um contato
-
-

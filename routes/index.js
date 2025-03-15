@@ -13,6 +13,17 @@ router.get("/", (req,res) => {res.send(`<html>
                 </ul>
             </body>
         </html>`);});
-router.use('/contacts', require('./contacts'));
+// router.use('/contacts', require('./contacts'));
+
+// module.exports = router;
+
+const contactsController = require("../controllers/contacts");
+
+// Rotas para contatos
+router.get("/contacts", contactsController.getAll); // Route to search all contacts
+router.get("/contacts/:id", contactsController.getSingle); // Route to search for a contact by ID
+router.post("/contacts", contactsController.insertContact); // Route to create contact
+router.put("/contacts/:id", contactsController.updateContact);//route to update contact
+router.delete("/contacts/:id", contactsController.deleteContact); //Route to delete contact
 
 module.exports = router;
