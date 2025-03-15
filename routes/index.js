@@ -19,8 +19,11 @@ router.get("/", (req,res) => {res.send(`<html>
 
 const contactsController = require("../controllers/contacts");
 
+router.use("/",require("./swagger"));
 // Rotas para contatos
-router.get("/contacts", contactsController.getAll); // Route to search all contacts
+router.get(
+    //#swagger.tags=[`Get all contacts `]
+    "/contacts", contactsController.getAll); // Route to search all contacts
 router.get("/contacts/:id", contactsController.getSingle); // Route to search for a contact by ID
 router.post("/contacts", contactsController.insertContact); // Route to create contact
 router.put("/contacts/:id", contactsController.updateContact);//route to update contact

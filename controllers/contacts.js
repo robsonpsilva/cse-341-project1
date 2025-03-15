@@ -2,6 +2,7 @@ const mongodb = require("../data/database");
 const ObjectId = require("mongodb").ObjectId;
 
 const getAll = async (req, res) => {
+    //#swagger.tags=["Users"]
     const result = await mongodb.getDatabase().db().collection("contacts").find();
     result.toArray().then((contacts) => {
         res.setHeader("Content-Type", "application/json");
@@ -10,6 +11,7 @@ const getAll = async (req, res) => {
 };
 
 const getSingle = async (req, res) => {
+    //#swagger.tags=["Users"]
     const contactId = new ObjectId(req.params.id);
     const result = await mongodb.getDatabase().db().collection("contacts").find({_id:contactId});
     result.toArray().then((contacts) => {
@@ -19,6 +21,7 @@ const getSingle = async (req, res) => {
 };
 
 const insertContact = async (req, res) => {
+    //#swagger.tags=["Users"]
     try {
         const { firstName, lastName, email, favoriteColor, birthday } = req.body;
     
@@ -53,6 +56,7 @@ const insertContact = async (req, res) => {
 };
 
 const deleteContact = async (req, res) => {
+    //#swagger.tags=["Users"]
     try {
         const { id } = req.params; // Obtém o ID da URL
 
