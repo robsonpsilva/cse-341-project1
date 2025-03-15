@@ -18,7 +18,30 @@ const getSingle = async (req, res) => {
     });  
 };
 
+// Função para criar um novo contato
+const createContact = async (req, res) => {
+    try {
+        const { firstName, lastName, email, favoriteColor, birthday } = req.body;
+
+        // Validar dados recebidos
+        if (!firstName || !lastName || !email || !favoriteColor || !birthday) {
+            return res.status(400).json({ error: 'All fields are required' });
+        }
+
+        // Criar e salvar o contato no banco de dados
+        const newContact = new Contact({ firstName, lastName, email, favoriteColor, birthday });
+        await newContact.save();
+
+        res.status(201).json({ message: 'Contact created successfully', contact: newContact });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error saving contact' });
+    }
+};
+
+
 module.exports = {
     getAll,
-    getSingle
+    getSingle,
+    createContact
 };
