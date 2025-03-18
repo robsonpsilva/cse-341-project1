@@ -8,25 +8,25 @@ POST https://cse-341-project1-t08e.onrender.com/contacts/
 Content-Type: application/json
 
 {
-    "firstName": "José Carlos",
-    "lastName": "Pereira",
-    "email": "jcpereira@example.com",
-    "favoriteColor": "red",
-    "birthday": "03/01/2000"
+    "firstName": "Andre",
+    "lastName": "Ferreira",
+    "email": "aferreira@example.com",
+    "favoriteColor": "white",
+    "birthday": "05/02/1981"
 }
 ###
-PUT https://cse-341-project1-t08e.onrender.com/contacts/67d53a449f530a551c5a8622
+PUT https://cse-341-project1-t08e.onrender.com/contacts/67d94f7fd3196d17b33cb8ac
 Content-Type: application/json
 
 {
     "firstName": "Andre",
     "lastName": "Silveira",
-    "email": "asilvairae@example.com",
+    "email": "asilvaira1@example.com",
     "favoriteColor": "white",
     "birthday": "03/06/1996"
 }
 ###
-DELETE https://cse-341-project1-t08e.onrender.com/contacts/67ca0aa706dd9a333bc7be0f
+DELETE https://cse-341-project1-t08e.onrender.com/contacts/67d94f7fd3196d17b33cb8ac
 Content-Type: application/json
 
 {
