@@ -2,22 +2,62 @@ const mongodb = require("../data/database");
 const ObjectId = require("mongodb").ObjectId;
 
 const getAll = async (req, res) => {
-    //#swagger.tags=["Users"]
-    const result = await mongodb.getDatabase().db().collection("contacts").find();
-    result.toArray().then((contacts) => {
+    try {
+        // Consulta ao banco de dados
+        const result = await mongodb
+            .getDatabase()
+            .db()
+            .collection("contacts")
+            .find();
+
+        // Convertendo o resultado em um array
+        const contacts = await result.toArray();
+
+        // Respondendo com sucesso
         res.setHeader("Content-Type", "application/json");
         res.status(200).json(contacts);
-    });
+    } catch (error) {
+        // Tratamento de erros
+        console.error("Error fetching contacts:", error);
+
+        // Retornando erro 500 (Internal Server Error) ao cliente
+        res.status(500).json({ "An error occurred while retrieving contacts." });
+    }
 };
 
 const getSingle = async (req, res) => {
     //#swagger.tags=["Users"]
-    const contactId = new ObjectId(req.params.id);
-    const result = await mongodb.getDatabase().db().collection("contacts").find({_id:contactId});
-    result.toArray().then((contacts) => {
+    try {
+        // Validação do formato do ID para garantir que seja válido
+        if (!req.params.id || !ObjectId.isValid(req.params.id)) {
+            return res.status(400).json({ error: "Invalid ID format" });
+        }
+
+        const contactId = new ObjectId(req.params.id);
+
+        // Consulta ao banco de dados
+        const result = await mongodb
+            .getDatabase()
+            .db()
+            .collection("contacts")
+            .find({ _id: contactId });
+
+        // Convertendo o resultado em um array
+        const contacts = await result.toArray();
+
+        // Verificando se o contato foi encontrado
+        if (contacts.length === 0) {
+            return res.status(404).json({ error: "Contact not found" });
+        }
+
+        // Respondendo com sucesso
         res.setHeader("Content-Type", "application/json");
         res.status(200).json(contacts[0]);
-    });  
+    } catch (error) {
+        // Tratamento de erros inesperados
+        console.error("Error fetching contact:", error);
+        res.status(500).json({ error: "An error occurred while retrieving the contact." });
+    }
 };
 
 const insertContact = async (req, res) => {
