@@ -21,7 +21,7 @@ const getAll = async (req, res) => {
         console.error("Error fetching contacts:", error);
 
         // Retornando erro 500 (Internal Server Error) ao cliente
-        res.status(500).json({ "An error occurred while retrieving contacts." });
+        res.status(500).json({error: "An error occurred while retrieving contacts." });
     }
 };
 
