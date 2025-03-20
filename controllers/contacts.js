@@ -99,7 +99,9 @@ const deleteContact = async (req, res) => {
     //#swagger.tags=["Users"]
     try {
         const { id } = req.params; // Obtém o ID da URL
-
+        if(!ObjectId.isValid(req.params.id)){
+            res.status(400).json("Must have a valid contac id to delete a contac.");
+        }
         // Verificar se o ID é válido
         if (!ObjectId.isValid(id)) {
             return res.status(400).json({ error: "Invalid ID format." });
@@ -128,6 +130,9 @@ const deleteContact = async (req, res) => {
 // Função para atualizar um contato
 const updateContact = async (req, res) => {
     try {
+        if(!ObjectId.isValid(req.params.id)){
+            res.status(400).json("Must have a valid contac id to update a contac.");
+        }
         const { id } = req.params; // ID do registro a ser atualizado
         const { firstName, lastName, email, favoriteColor, birthday } = req.body;
 
